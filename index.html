@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASSORTED MINDS — Complete Songbook — RLD STUDIO</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --color-bg: #0C0C1E;
+  --color-bg-card: #12122A;
+  --color-accent: #E94560;
+  --color-gold: #C9A227;
+  --color-text: #E8E8F0;
+  --color-text-dim: #8888AA;
+  --color-border: #2A2A4A;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Source Sans Pro', 'Segoe UI', sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(233,69,96,.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(201,162,39,.04) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 60px 24px 80px;
+}
+
+/* Header */
+.studio-brand {
+  text-align: center;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeDown 0.6s ease-out 0.1s forwards;
+}
+.studio-brand .logo-text {
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+.studio-brand .divider-line {
+  width: 80px;
+  height: 1px;
+  background: var(--color-gold);
+  margin: 14px auto;
+  opacity: 0.5;
+}
+.page-title {
+  text-align: center;
+  margin-bottom: 60px;
+  opacity: 0;
+  animation: fadeDown 0.6s ease-out 0.2s forwards;
+}
+.page-title h1 {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 900;
+  color: #FFF;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 20px rgba(233,69,96,.15);
+}
+.page-title .subtitle {
+  font-size: 14px;
+  color: var(--color-text-dim);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.page-title .accent-bar {
+  width: 60px;
+  height: 3px;
+  background: var(--color-accent);
+  margin: 20px auto 0;
+  border-radius: 2px;
+}
+
+/* Album sections */
+.album-section {
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease-out forwards;
+}
+.album-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--color-accent);
+}
+.album-badge {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-accent);
+  background: rgba(233,69,96,.12);
+  padding: 4px 12px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.album-name {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 900;
+  color: #FFF;
+}
+.album-meta {
+  font-size: 13px;
+  color: var(--color-text-dim);
+  margin-bottom: 16px;
+}
+
+/* Track list */
+.track-list {
+  list-style: none;
+  counter-reset: none;
+}
+.track-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--color-border);
+  transition: background 0.2s ease;
+}
+.track-item:hover {
+  background: rgba(233,69,96,.04);
+}
+.track-num {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-gold);
+  min-width: 28px;
+  text-align: center;
+}
+.track-link {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.track-link:hover {
+  color: var(--color-accent);
+}
+.track-link::after {
+  content: ' →';
+  font-size: 12px;
+  color: var(--color-text-dim);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.track-item:hover .track-link::after {
+  opacity: 1;
+}
+.track-pending {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--color-text-dim);
+  font-style: italic;
+}
+
+/* Stats */
+.stats-section {
+  text-align: center;
+  margin-top: 60px;
+  padding-top: 32px;
+  border-top: 1px solid var(--color-border);
+  opacity: 0;
+  animation: fadeUp 0.6s ease-out 0.8s forwards;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 20px;
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--color-accent);
+}
+.stat-label {
+  font-size: 11px;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 4px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  margin-top: 48px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease-out 0.9s forwards;
+}
+.footer .copyright {
+  font-size: 12px;
+  color: var(--color-text-dim);
+  opacity: 0.6;
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 600px) {
+  .container { padding: 40px 16px 60px; }
+  .page-title h1 { font-size: 32px; }
+  .album-name { font-size: 20px; }
+  .album-header { flex-direction: column; gap: 8px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media print {
+  body { background: #fff; color: #1A1A2E; }
+  .track-link { color: #1A1A2E; }
+  * { animation: none !important; opacity: 1 !important; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="studio-brand">
+    <div class="logo-text">RLD Studio</div>
+    <div class="divider-line"></div>
+  </div>
+
+  <div class="page-title">
+    <h1>Assorted Minds</h1>
+    <div class="subtitle">Complete Songbook &bull; by RLD Ensemble</div>
+    <div class="accent-bar"></div>
+  </div>
+
+    <section class="album-section" style="animation-delay:0.3s">
+      <div class="album-header">
+        <span class="album-badge">ALBUM 1</span>
+        <h2 class="album-name">Echoes and Farewells</h2>
+      </div>
+      <p class="album-meta">10 tracks &bull; Loss, goodbye, healing, resilience</p>
+      <ol class="track-list">
+        <li class="track-item">
+          <span class="track-num">01</span>
+          <div class="track-info">
+            <a href="A1_T01_ECHOES_OF_SORROW.html" class="track-link">ECHOES OF SORROW</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">02</span>
+          <div class="track-info">
+            <a href="A1_T02_ECHOES_OF_GOODBYE.html" class="track-link">ECHOES OF GOODBYE</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">03</span>
+          <div class="track-info">
+            <a href="A1_T03_GENTLE_ECHOES_OF_FAREWELL.html" class="track-link">GENTLE ECHOES OF FAREWELL</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">04</span>
+          <div class="track-info">
+            <a href="A1_T04_THE_ECHOES_OF_MY_SOUND.html" class="track-link">THE ECHOES OF MY SOUND</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">05</span>
+          <div class="track-info">
+            <a href="A1_T05_I_AM_LOSING_YOU.html" class="track-link">I AM LOSING YOU</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">06</span>
+          <div class="track-info">
+            <a href="A1_T06_TIME_TO_WALK_AWAY.html" class="track-link">TIME TO WALK AWAY</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">07</span>
+          <div class="track-info">
+            <a href="A1_T07_AFTER_THE_PAIN.html" class="track-link">AFTER THE PAIN</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">08</span>
+          <div class="track-info">
+            <a href="A1_T08_DESPUÉS_DEL_DOLOR.html" class="track-link">DESPUÉS DEL DOLOR</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">09</span>
+          <div class="track-info">
+            <a href="A1_T09_WHAT_REMAINS.html" class="track-link">WHAT REMAINS</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">10</span>
+          <div class="track-info">
+            <a href="A1_T10_EMPTY_SPACE.html" class="track-link">EMPTY SPACE</a>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="album-section" style="animation-delay:0.4s">
+      <div class="album-header">
+        <span class="album-badge">ALBUM 2</span>
+        <h2 class="album-name">Cosmic Nights</h2>
+      </div>
+      <p class="album-meta">10 tracks &bull; Night, movement, neon, cosmic energy</p>
+      <ol class="track-list">
+        <li class="track-item">
+          <span class="track-num">01</span>
+          <div class="track-info">
+            <a href="A2_T01_2_TWILIGHT.html" class="track-link">2 TWILIGHT</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">02</span>
+          <div class="track-info">
+            <a href="A2_T02_UNDER_THE_CITY_LIGHTS.html" class="track-link">UNDER THE CITY LIGHTS</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">03</span>
+          <div class="track-info">
+            <a href="A2_T03_COSMIC_CABARET.html" class="track-link">COSMIC CABARET</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">04</span>
+          <div class="track-info">
+            <a href="A2_T04_TANGO_IN_NEON.html" class="track-link">TANGO IN NEON</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">05</span>
+          <div class="track-info">
+            <a href="A2_T05_STILL_GRINDING_CLEAN.html" class="track-link">STILL GRINDING (CLEAN)</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">06</span>
+          <div class="track-info">
+            <a href="A2_T06_STILL_GRINDING_THROUGH_NIGHTS_DEMONS.html" class="track-link">STILL GRINDING THROUGH NIGHT’S DEMONS</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">07</span>
+          <div class="track-info">
+            <a href="A2_T07_WHILE_WE_WERE_SLEEPING.html" class="track-link">WHILE WE WERE SLEEPING</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">08</span>
+          <div class="track-info">
+            <a href="A2_T08_CYMBALINE.html" class="track-link">CYMBALINE</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">09</span>
+          <div class="track-info">
+            <a href="A2_T09_CARAVAN_COLOR.html" class="track-link">CARAVAN COLOR</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">10</span>
+          <div class="track-info">
+            <a href="A2_T10_A_BRILLIANT_SHADE_OF_UNCERTAINTY.html" class="track-link">A BRILLIANT SHADE OF UNCERTAINTY</a>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="album-section" style="animation-delay:0.5s">
+      <div class="album-header">
+        <span class="album-badge">ALBUM 3</span>
+        <h2 class="album-name">Inner Landscapes</h2>
+      </div>
+      <p class="album-meta">10 tracks &bull; Self-discovery, patterns, meaning, identity</p>
+      <ol class="track-list">
+        <li class="track-item">
+          <span class="track-num">01</span>
+          <div class="track-info">
+            <a href="A3_T01_MIND_MISSION.html" class="track-link">MIND MISSION</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">02</span>
+          <div class="track-info">
+            <a href="A3_T02_INNER_WEATHER.html" class="track-link">INNER WEATHER</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">03</span>
+          <div class="track-info">
+            <a href="A3_T03_PERSISTENT_PATTERNS.html" class="track-link">PERSISTENT PATTERNS</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">04</span>
+          <div class="track-info">
+            <a href="A3_T04_CHOICES.html" class="track-link">CHOICES</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">05</span>
+          <div class="track-info">
+            <a href="A3_T05_MEANINGLESS.html" class="track-link">MEANINGLESS</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">06</span>
+          <div class="track-info">
+            <a href="A3_T06_STRANGER_IN_MY_OWN_LAND.html" class="track-link">STRANGER IN MY OWN LAND</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">07</span>
+          <div class="track-info">
+            <a href="A3_T07_FOR_THE_SILENT_VOICE.html" class="track-link">FOR THE SILENT VOICE</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">08</span>
+          <div class="track-info">
+            <a href="A3_T08_SOMETHING_DEEPER_THAN_THE_PAST.html" class="track-link">SOMETHING DEEPER THAN THE PAST</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">09</span>
+          <div class="track-info">
+            <a href="A3_T09_MAKE_HUMANS_GREAT_AGAIN.html" class="track-link">MAKE HUMANS GREAT AGAIN!!</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">10</span>
+          <div class="track-info">
+            <a href="A3_T10_DAYS_AROUND_YOU.html" class="track-link">DAYS AROUND YOU</a>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="album-section" style="animation-delay:0.6000000000000001s">
+      <div class="album-header">
+        <span class="album-badge">ALBUM 4</span>
+        <h2 class="album-name">Horizons</h2>
+      </div>
+      <p class="album-meta">10 tracks &bull; New beginnings, love, multilingual expression, transcendence</p>
+      <ol class="track-list">
+        <li class="track-item">
+          <span class="track-num">01</span>
+          <div class="track-info">
+            <a href="A4_T01_NEW_SKY.html" class="track-link">NEW SKY</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">02</span>
+          <div class="track-info">
+            <a href="A4_T02_YOUR_DAYS_AGAIN.html" class="track-link">YOUR DAYS AGAIN</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">03</span>
+          <div class="track-info">
+            <a href="A4_T03_THE_MUSIC_IN_YOUR_EYES.html" class="track-link">THE MUSIC IN YOUR EYES</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">04</span>
+          <div class="track-info">
+            <a href="A4_T04_SUMMER_RAIN_PERFUME.html" class="track-link">SUMMER RAIN PERFUME</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">05</span>
+          <div class="track-info">
+            <a href="A4_T05_A_LITTLE_BIT_OF_SUGAR.html" class="track-link">A LITTLE BIT OF SUGAR</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">06</span>
+          <div class="track-info">
+            <a href="A4_T06_UN_POCO_DE_AZÚCAR.html" class="track-link">UN POCO DE AZÚCAR</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">07</span>
+          <div class="track-info">
+            <a href="A4_T07_TEOTLAC_CITLALI_ESTRELLA_DE_LA_TARDE.html" class="track-link">TEOTLAC CITLALI (ESTRELLA DE LA TARDE)</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">08</span>
+          <div class="track-info">
+            <a href="A4_T08_ESTRELLA_DE_LA_TARDE.html" class="track-link">ESTRELLA DE LA TARDE</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">09</span>
+          <div class="track-info">
+            <a href="A4_T09_EN_LOS_CRISTALES_DEL_TIEMPO_VEO.html" class="track-link">EN LOS CRISTALES DEL TIEMPO, VEO</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">10</span>
+          <div class="track-info">
+            <a href="A4_T10_SUSPENDED_TWILIGHT_PENUMBRA.html" class="track-link">SUSPENDED TWILIGHT (PENUMBRA)</a>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="album-section" style="animation-delay:0.7s">
+      <div class="album-header">
+        <span class="album-badge">ALBUM 5</span>
+        <h2 class="album-name">Pictures and Walls</h2>
+      </div>
+      <p class="album-meta">10 tracks &bull; Chaos, identity, nostalgia, surreal connection</p>
+      <ol class="track-list">
+        <li class="track-item">
+          <span class="track-num">01</span>
+          <div class="track-info">
+            <a href="A5_T01_RECIPE_FOR_CHAOS.html" class="track-link">RECIPE FOR CHAOS</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">02</span>
+          <div class="track-info">
+            <a href="A5_T02_LIKE_YOU_ALWAYS_BEEN.html" class="track-link">LIKE YOU ALWAYS BEEN</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">03</span>
+          <div class="track-info">
+            <a href="A5_T03_AUTUMN_ROAD.html" class="track-link">AUTUMN ROAD</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">04</span>
+          <div class="track-info">
+            <a href="A5_T04_I_LEFT_MY_HOUSE_WITH_A_WET_BRAIN.html" class="track-link">I LEFT MY HOUSE WITH A WET BRAIN</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">05</span>
+          <div class="track-info">
+            <a href="A5_T05_SHARP_AND_FALSE_AND_GREY.html" class="track-link">SHARP AND FALSE AND GREY</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">06</span>
+          <div class="track-info">
+            <a href="A5_T06_TOGETHER_ALONE_CAFETERÍA_DE_ORANGE.html" class="track-link">TOGETHER ALONE (CAFETERÍA DE ORANGE)</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">07</span>
+          <div class="track-info">
+            <a href="A5_T07_PAINTED_NOT_EMPTY_PINTADA.html" class="track-link">PAINTED NOT EMPTY (PINTADA)</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">08</span>
+          <div class="track-info">
+            <a href="A5_T08_HOLLOW_ECHO.html" class="track-link">HOLLOW ECHO</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">09</span>
+          <div class="track-info">
+            <a href="A5_T09_MAZE_22.html" class="track-link">MAZE 22</a>
+          </div>
+        </li>
+        <li class="track-item">
+          <span class="track-num">10</span>
+          <div class="track-info">
+            <a href="A5_T10_MONOLIGHT.html" class="track-link">MONOLIGHT</a>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+  <div class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Albums</div></div>
+      <div class="stat-item"><div class="stat-num">50</div><div class="stat-label">Songs</div></div>
+      <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">Languages</div></div>
+      <div class="stat-item"><div class="stat-num">20+</div><div class="stat-label">Genres</div></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="copyright">&copy; RLD STUDIO / RLD ENSEMBLE &mdash; All Rights Reserved</div>
+  </div>
+</div>
+</body>
+</html>
